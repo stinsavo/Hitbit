@@ -1,21 +1,13 @@
 ﻿<Page
-    x:Class="Hitbit.MainPage"
+    x:Class="Hitbit.Pages.Setting"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Hitbit"
+    xmlns:local="using:Hitbit.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:models="using:Hitbit.Models"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Pivot x:Name="rootPivot" Title="Pivot Title" >
-            <PivotItem Header="Pivot Item 1">
-            </PivotItem>
-            <PivotItem Header="Pivot Item 2">
-            </PivotItem>
-            <PivotItem Header="Pivot Item 3">
-            </PivotItem>
-        </Pivot>
+
     </Grid>
 </Page>
