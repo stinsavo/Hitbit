@@ -4,8 +4,16 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="using:Hitbit.Models"
     mc:Ignorable="d">
 
+          <Page.BottomAppBar>
+            <CommandBar>
+                <AppBarButton x:Name="saveButton" Click="SaveButton_OnClick" Label="Добавить" Icon="Add"/>
+                <AppBarButton x:Name="editButton" Click="EditButton_OnClick" Label="Изменить" Icon="Edit"/>
+                <AppBarButton x:Name="deleteButton" Click="DeleteButton_OnClick" Label="Удалить" Icon="Delete"/>
+            </CommandBar>
+        </Page.BottomAppBar>
     <Grid x:Name="LayoutRoot"
           Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
           EntranceNavigationTransitionInfo.IsTargetElement="True"
@@ -31,6 +39,14 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
-        <TextBlock Style="{StaticResource TitleTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Your App Content"/>
+        <ListView x:Name="PhrasesList">
+            <ListView.ItemTemplate>
+                <DataTemplate  x:DataType="models:Phrase">
+                    <StackPanel>
+                        <TextBlock Text="{Binding Name}"  TextWrapping="Wrap" FontSize="19" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Page>

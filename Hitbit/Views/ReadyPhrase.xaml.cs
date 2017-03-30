@@ -1,30 +1,51 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+﻿using System.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
+using Hitbit.Db;
+using Hitbit.Models;
 
 namespace Hitbit.Views
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
+
     public sealed partial class ReadyPhrase : Page
     {
         public ReadyPhrase()
         {
             this.InitializeComponent();
+            this.Loaded += MainPage_Loaded;
+        }
+        private void MainPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            using (HitbitContext db = new HitbitContext())
+            {
+                PhrasesList.ItemsSource = db.Phrase.ToList();
+            }
+        }
+        private void SaveButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private void EditButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private void DeleteButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (PhrasesList.SelectedItem != null)
+            {
+                Phrase removePhrase = PhrasesList.SelectedItem as Phrase;
+                if (removePhrase != null)
+                {
+                    using (HitbitContext db = new HitbitContext())
+                    {
+                        db.Phrase.Remove(removePhrase);
+                        db.SaveChanges();
+                        PhrasesList.ItemsSource = db.Phrase.ToList();
+                    }
+                }
+            }
         }
     }
 }
